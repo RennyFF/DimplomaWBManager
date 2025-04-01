@@ -1,0 +1,398 @@
+﻿<UserControl
+    x:Class="MYWFE.MVVM.View.ReviewView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:components="clr-namespace:MYWFE.Utils.Components"
+    xmlns:converters="clr-namespace:MYWFE.Utils.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:local="clr-namespace:MYWFE.MVVM.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="clr-namespace:MYWFE.MVVM.ViewModel"
+    d:DesignHeight="590"
+    d:DesignWidth="820"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel
+            Grid.RowSpan="2"
+            VerticalAlignment="Center"
+            Visibility="{Binding UserService.User, Converter={StaticResource NullToVisibilityConverter}}">
+            <TextBlock
+                HorizontalAlignment="Center"
+                Style="{StaticResource HeaderPageTextStyle}"
+                Text="Ограниченный доступ" />
+            <TextBlock
+                Margin="0,5,0,20"
+                HorizontalAlignment="Center"
+                Foreground="{StaticResource LightGrayColorBrush}"
+                Style="{StaticResource SubHeaderPageTextStyle}"
+                Text="Войдите в аккаунт, чтобы получить доступ к этой вкладке" />
+            <Button
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Cursor="Hand"
+                Style="{StaticResource CustomButton--anotherBG}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="PreviewMouseDown">
+                        <b:InvokeCommandAction Command="{Binding OpenModalCommand}" />
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconPhosphorIcons
+                        Width="20"
+                        Height="20"
+                        Kind="UserCirclePlusBold" />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource DefaultText}"
+                        Text="Войти в аккаунт" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <Grid Margin="20,0,20,20" Visibility="{Binding UserService.User, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Invert}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                HorizontalAlignment="Left"
+                Style="{StaticResource HeaderPageTextStyle}"
+                Text="Отзывы" />
+
+            <components:LoadingSpinner
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Cap="Triangle"
+                Diameter="100"
+                Thickness="7"
+                Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}"
+                Color="{StaticResource SecondColorBrush}" />
+
+            <Grid Grid.Row="1" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Invert}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <components:LoadingSpinner
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Cap="Triangle"
+                    Diameter="100"
+                    Thickness="7"
+                    Visibility="{Binding IsContentLoading, Converter={StaticResource BoolToVisibilityConverter}}"
+                    Color="{StaticResource SecondColorBrush}" />
+                <Border
+                    Margin="0,20"
+                    Padding="20,15"
+                    Background="{StaticResource MainColorBrush}"
+                    CornerRadius="16"
+                    Visibility="{Binding IsContentLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Invert}">
+                    <ListView
+                        d:ItemsSource="{d:SampleData ItemCount=50}"
+                        ItemContainerStyle="{StaticResource ListBoxItemCustomStyleTransparent}"
+                        ItemsSource="{Binding ReviewList}"
+                        Style="{StaticResource ListBoxCustomStyle}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="180" Margin="0,0,5,15">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Border
+                                        Padding="15"
+                                        HorizontalAlignment="Stretch"
+                                        Panel.ZIndex="1"
+                                        CornerRadius="8 8 0 0"
+                                        Cursor="Arrow">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                <GradientStop Offset="1.5" Color="{StaticResource DarkColor}" />
+                                                <GradientStop Offset="0" Color="{StaticResource SecondColor}" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <Border.Effect>
+                                            <DropShadowEffect
+                                                BlurRadius="20"
+                                                Direction="270"
+                                                Opacity="0.3" />
+                                        </Border.Effect>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="0.5*" />
+                                                <ColumnDefinition Width="0.5*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock
+                                                Width="100"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                FontWeight="Medium"
+                                                Style="{StaticResource DefaultText}"
+                                                Text="{Binding userName}"
+                                                TextTrimming="CharacterEllipsis" />
+                                            <TextBlock
+                                                Grid.Column="1"
+                                                Margin="20,0"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                FontWeight="Medium"
+                                                Style="{StaticResource DefaultText}">
+                                                <Run Foreground="{StaticResource LightGrayColorBrush}" Text="Оценка:" />
+                                                <iconPacks:PackIconPhosphorIcons Foreground="DarkOrange" Kind="StarFill" />
+                                                <Run Text="{Binding productValuation}" />
+                                            </TextBlock>
+
+                                            <TextBlock
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                FontWeight="Medium"
+                                                Style="{StaticResource DefaultText}">
+                                                <Run Foreground="{StaticResource LightGrayColorBrush}" Text="Размер:" />
+                                                <Run Text="{Binding productDetails.size}" />
+                                            </TextBlock>
+
+                                            <TextBlock
+                                                Grid.Column="3"
+                                                Margin="20,0"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                FontWeight="Medium"
+                                                Style="{StaticResource DefaultText}"
+                                                TextTrimming="CharacterEllipsis">
+                                                <Run Foreground="{StaticResource LightGrayColorBrush}" Text="Товар:" />
+                                                <Run Text="{Binding productDetails.productName}" />
+                                            </TextBlock>
+
+
+                                            <TextBlock
+                                                Grid.Column="4"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                FontWeight="Medium"
+                                                Style="{StaticResource DefaultText}">
+                                                <Run Foreground="{StaticResource LightGrayColorBrush}" Text="Артикул:" />
+                                                <Run
+                                                    Cursor="Hand"
+                                                    PreviewMouseDown="TextBlock_PreviewMouseDown"
+                                                    Text="{Binding productDetails.nmId}" />
+                                            </TextBlock>
+                                        </Grid>
+                                    </Border>
+                                    <Border
+                                        Grid.Row="1"
+                                        Padding="15"
+                                        Background="{StaticResource SecondColorBrush}"
+                                        CornerRadius="0 0 8 8"
+                                        Cursor="Arrow">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="0.5*" />
+                                                <ColumnDefinition Width="auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    FontWeight="Medium"
+                                                    Foreground="{StaticResource LightGrayColorBrush}"
+                                                    Style="{StaticResource DefaultText}"
+                                                    Text="Отзыв:" />
+                                                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                                    <TextBlock
+                                                        VerticalAlignment="Top"
+                                                        Style="{StaticResource DefaultText}"
+                                                        Text="{Binding text}"
+                                                        TextWrapping="Wrap" />
+                                                </ScrollViewer>
+                                            </Grid>
+                                            <Grid Grid.Column="1" Margin="30,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="auto" />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    FontWeight="Medium"
+                                                    Foreground="{StaticResource LightGrayColorBrush}"
+                                                    Style="{StaticResource DefaultText}"
+                                                    Text="Достоинства:" />
+                                                <ScrollViewer
+                                                    Grid.Column="1"
+                                                    Margin="10,0,0,0"
+                                                    VerticalScrollBarVisibility="Auto">
+                                                    <TextBlock
+                                                        VerticalAlignment="Center"
+                                                        Style="{StaticResource DefaultText}"
+                                                        Text="{Binding pros}"
+                                                        TextWrapping="Wrap" />
+                                                </ScrollViewer>
+                                                <TextBlock
+                                                    Grid.Row="1"
+                                                    VerticalAlignment="Center"
+                                                    FontWeight="Medium"
+                                                    Foreground="{StaticResource LightGrayColorBrush}"
+                                                    Style="{StaticResource DefaultText}"
+                                                    Text="Недостатки:" />
+                                                <ScrollViewer
+                                                    Grid.Row="1"
+                                                    Grid.Column="1"
+                                                    Margin="10,0,0,0"
+                                                    VerticalScrollBarVisibility="Auto">
+                                                    <TextBlock
+                                                        VerticalAlignment="Center"
+                                                        Style="{StaticResource DefaultText}"
+                                                        Text="{Binding cons}"
+                                                        TextWrapping="Wrap" />
+                                                </ScrollViewer>
+                                            </Grid>
+                                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                                <Button
+                                                    Command="{Binding DataContext.OpenManualAnswer, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                                    CommandParameter="{Binding}"
+                                                    Content="Ответить"
+                                                    Cursor="Hand"
+                                                    FontWeight="Medium"
+                                                    Style="{StaticResource CustomButton}" />
+                                                <Button
+                                                    Margin="0,5,0,0"
+                                                    Command="{Binding DataContext.OpenAttachedImages, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                                    CommandParameter="{Binding}"
+                                                    Content="Вложенные изображения"
+                                                    Cursor="Hand"
+                                                    FontWeight="Medium"
+                                                    Style="{StaticResource CustomButton}"
+                                                    Visibility="{Binding photoLinks, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Invert}" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Border>
+                <StackPanel
+                    Grid.Row="1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button
+                        Command="{Binding StartAutoAnswer}"
+                        Cursor="Hand"
+                        Style="{StaticResource CustomButton--anotherBG}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <iconPacks:PackIconPhosphorIcons
+                                Width="20"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                Kind="PlayCircleFill" />
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                FontWeight="Medium"
+                                Style="{StaticResource DefaultText}"
+                                Text="Запустить автоответы по шаблонам" />
+                        </Grid>
+                    </Button>
+                    <Button
+                        Margin="20,0,0,0"
+                        VerticalAlignment="Center"
+                        Command="{Binding ReloadList}"
+                        Style="{StaticResource CustomButton--anotherBG}"
+                        Visibility="{Binding IsReloadReady, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <iconPacks:PackIconPhosphorIcons
+                                Width="20"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                Kind="ArrowsClockwiseFill" />
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                FontWeight="Medium"
+                                Style="{StaticResource DefaultText}"
+                                Text="Обновить" />
+                        </Grid>
+                    </Button>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button
+                        Margin="0,0,5,0"
+                        Command="{Binding FirstPage}"
+                        Content="{iconPacks:PhosphorIcons Kind=CaretCircleDoubleLeftFill,
+                                                          Height=20,
+                                                          Width=20}"
+                        Style="{StaticResource CustomButton--anotherBG}" />
+                    <Button
+                        Command="{Binding PreviousPage}"
+                        Content="{iconPacks:PhosphorIcons Kind=CaretCircleLeftFill,
+                                                          Height=20,
+                                                          Width=20}"
+                        Style="{StaticResource CustomButton--anotherBG}" />
+                    <TextBlock
+                        Width="60"
+                        Margin="20,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="{StaticResource SecondColorBrush}"
+                        Style="{StaticResource DefaultText}"
+                        TextAlignment="Center">
+                        <Run Text="{Binding CurrentPage}" />
+                        <Run Text="из" />
+                        <Run Text="{Binding AllPages}" />
+                    </TextBlock>
+                    <Button
+                        Command="{Binding NextPage}"
+                        Content="{iconPacks:PhosphorIcons Kind=CaretCircleRightFill,
+                                                          Height=20,
+                                                          Width=20}"
+                        Style="{StaticResource CustomButton--anotherBG}" />
+                    <Button
+                        Margin="5,0,0,0"
+                        Command="{Binding LastPage}"
+                        Content="{iconPacks:PhosphorIcons Kind=CaretCircleDoubleRightFill,
+                                                          Height=20,
+                                                          Width=20}"
+                        Style="{StaticResource CustomButton--anotherBG}" />
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

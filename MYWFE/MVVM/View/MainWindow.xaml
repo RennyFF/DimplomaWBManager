@@ -1,0 +1,398 @@
+﻿<Window
+    x:Class="MYWFE.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:converter="clr-namespace:MYWFE.Utils.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dialogHost="clr-namespace:MYWFE.Utils.Components.Dialog"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="clr-namespace:MYWFE.ViewModel"
+    x:Name="Root"
+    Title="MYWFE"
+    Width="1400"
+    Height="830"
+    MinWidth="1200"
+    MinHeight="700"
+    d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
+    Background="{StaticResource DarkColorBrush}"
+    FontFamily="{StaticResource Ubuntu}"
+    ResizeMode="CanResize"
+    SizeChanged="Window_SizeChanged"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="ToolWindow"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <converter:SizeConverter x:Key="SizeConverter" />
+        <converter:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+        <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </Window.Resources>
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="34" />
+    </WindowChrome.WindowChrome>
+
+    <Window.CommandBindings>
+        <CommandBinding
+            CanExecute="CommandBinding_CanExecute"
+            Command="{x:Static SystemCommands.CloseWindowCommand}"
+            Executed="CommandBinding_Executed_Close" />
+        <CommandBinding
+            CanExecute="CommandBinding_CanExecute"
+            Command="{x:Static SystemCommands.MaximizeWindowCommand}"
+            Executed="CommandBinding_Executed_Maximize" />
+        <CommandBinding
+            CanExecute="CommandBinding_CanExecute"
+            Command="{x:Static SystemCommands.MinimizeWindowCommand}"
+            Executed="CommandBinding_Executed_Minimize" />
+        <CommandBinding
+            CanExecute="CommandBinding_CanExecute"
+            Command="{x:Static SystemCommands.RestoreWindowCommand}"
+            Executed="CommandBinding_Executed_Restore" />
+    </Window.CommandBindings>
+
+    <Border
+        x:Name="MainWindowBorder"
+        BorderBrush="{StaticResource DarkColorBrush}"
+        BorderThickness="0">
+
+        <Grid x:Name="parentContainer" Background="{StaticResource DarkColorBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Height="30" Background="{StaticResource DarkColorBrush}">
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button
+                        Command="{x:Static SystemCommands.MinimizeWindowCommand}"
+                        Style="{StaticResource CaptionButtonStyle}"
+                        WindowChrome.IsHitTestVisibleInChrome="True">
+                        <iconPacks:PackIconPhosphorIcons
+                            Height="13"
+                            Foreground="White"
+                            Kind="Minus" />
+                    </Button>
+                    <Button
+                        x:Name="RestoreButton"
+                        Command="{x:Static SystemCommands.RestoreWindowCommand}"
+                        Style="{StaticResource CaptionButtonStyle}"
+                        Visibility="Collapsed"
+                        WindowChrome.IsHitTestVisibleInChrome="True">
+                        <iconPacks:PackIconPhosphorIcons
+                            Height="13"
+                            Foreground="White"
+                            Kind="CornersIn" />
+                    </Button>
+                    <Button
+                        x:Name="MaximizeButton"
+                        Command="{x:Static SystemCommands.MaximizeWindowCommand}"
+                        Style="{StaticResource CaptionButtonStyle}"
+                        Visibility="Visible"
+                        WindowChrome.IsHitTestVisibleInChrome="True">
+                        <iconPacks:PackIconPhosphorIcons
+                            Height="13"
+                            Foreground="White"
+                            Kind="Square" />
+                    </Button>
+                    <Button
+                        Command="{x:Static SystemCommands.CloseWindowCommand}"
+                        Style="{StaticResource CaptionButtonStyle--Close}"
+                        WindowChrome.IsHitTestVisibleInChrome="True">
+                        <iconPacks:PackIconPhosphorIcons
+                            Height="13"
+                            Foreground="White"
+                            Kind="X" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <!--  MENU  -->
+
+            <Grid Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="MenuColumnDef" Width="290" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border
+                    x:Name="MenuBorder"
+                    HorizontalAlignment="Stretch"
+                    BorderThickness="0,0,0.9,0"
+                    CornerRadius="0">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ActualWidth, ElementName=Root, Converter={StaticResource SizeConverter}, ConverterParameter=1220}" Value="True">
+                                    <Setter Property="Width" Value="90" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+
+                    <Border.BorderBrush>
+                        <LinearGradientBrush>
+                            <GradientStop Offset="0.2" Color="{StaticResource DarkColor}" />
+                            <GradientStop Offset="1" Color="Gray" />
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+
+
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="1,0" EndPoint="0.2,1">
+                            <GradientStop Offset="0.1" Color="{StaticResource DarkColor}" />
+                            <GradientStop Offset="0.50" Color="{StaticResource MainColor}" />
+                            <GradientStop Offset="0.63" Color="{StaticResource SecondColor}" />
+                            <GradientStop Offset="0.76" Color="{StaticResource MainColor}" />
+                            <GradientStop Offset="0.89" Color="{StaticResource SecondColor}" />
+                            <GradientStop Offset="0.95" Color="{StaticResource MainColor}" />
+                            <GradientStop Offset="1" Color="{StaticResource SecondColor}" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <!--  InfoTop  -->
+                        <Image
+                            x:Name="LogoIcon"
+                            HorizontalAlignment="Center"
+                            RenderOptions.BitmapScalingMode="HighQuality"
+                            Source="/Resources/logowobg_430x625.png"
+                            Stretch="Uniform"
+                            UseLayoutRounding="True"
+                            Visibility="Collapsed" />
+                        <StackPanel
+                            x:Name="LogoStackPanel"
+                            HorizontalAlignment="Center"
+                            Orientation="Vertical">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="32"
+                                FontStyle="Normal"
+                                Foreground="White">
+                                <Run
+                                    FontSize="28"
+                                    FontWeight="ExtraBold"
+                                    Foreground="{StaticResource MainText}"
+                                    Text="MY" /><Run FontWeight="ExtraBold" Text="WFE" />
+                            </TextBlock>
+                            <TextBlock
+                                Margin="0,4,0,0"
+                                HorizontalAlignment="Center"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Foreground="{StaticResource MainColorBrush}"
+                                Text="(BETA)" />
+                        </StackPanel>
+
+                        <!--  Menu Items  -->
+                        <StackPanel Grid.Row="1" Margin="0,50,0,0">
+                            <RadioButton
+                                x:Name="MenuHomeBtn"
+                                Command="{Binding NavigateHomeCommand}"
+                                GroupName="MenuButtons"
+                                IsChecked="True"
+                                Style="{StaticResource menuButton}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <iconPacks:PackIconPhosphorIcons Kind="HouseFill" Style="{StaticResource menuButtonIcon}" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Style="{StaticResource menuButtonText}"
+                                        Text="Главная" />
+                                </Grid>
+                            </RadioButton>
+                            <RadioButton
+                                x:Name="MenuFeedbacksBtn"
+                                Command="{Binding NavigateReviewCommand}"
+                                GroupName="MenuButtons"
+                                Style="{StaticResource menuButton}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <iconPacks:PackIconPhosphorIcons Kind="BellSimpleFill" Style="{StaticResource menuButtonIcon}" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Style="{StaticResource menuButtonText}"
+                                        Text="Отзывы" />
+                                </Grid>
+                            </RadioButton>
+                            <RadioButton
+                                x:Name="MenuQuestionsBtn"
+                                Command="{Binding NavigateQuestionCommand}"
+                                GroupName="MenuButtons"
+                                Style="{StaticResource menuButton}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <iconPacks:PackIconPhosphorIcons Kind="QuestionFill" Style="{StaticResource menuButtonIcon}" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Style="{StaticResource menuButtonText}"
+                                        Text="Вопросы" />
+                                </Grid>
+                            </RadioButton>
+                            <RadioButton
+                                x:Name="MenuTemplatesBtn"
+                                Command="{Binding NavigateTemplatesCommand}"
+                                GroupName="MenuButtons"
+                                Style="{StaticResource menuButton}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <iconPacks:PackIconPhosphorIcons Kind="MessengerLogoFill" Style="{StaticResource menuButtonIcon}" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Style="{StaticResource menuButtonText}"
+                                        Text="Шаблоны" />
+                                </Grid>
+                            </RadioButton>
+                            <RadioButton
+                                x:Name="MenuSettingsBtn"
+                                Command="{Binding NavigateSettingsCommand}"
+                                GroupName="MenuButtons"
+                                Style="{StaticResource menuButton}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <iconPacks:PackIconPhosphorIcons Kind="GearFill" Style="{StaticResource menuButtonIcon}" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Style="{StaticResource menuButtonText}"
+                                        Text="Настройки" />
+                                </Grid>
+                            </RadioButton>
+                        </StackPanel>
+
+                        <Grid
+                            x:Name="AddAccountGrid"
+                            Grid.Row="2"
+                            Height="45"
+                            Margin="20,0,20,20"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Bottom"
+                            Background="Transparent"
+                            Cursor="Hand"
+                            Visibility="{Binding UserService.User, Converter={StaticResource NullToVisibilityConverter}}">
+                            <b:Interaction.Triggers>
+                                <b:EventTrigger EventName="PreviewMouseDown">
+                                    <b:InvokeCommandAction Command="{Binding OpenDialogCommand}" />
+                                </b:EventTrigger>
+                            </b:Interaction.Triggers>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition x:Name="AddAccountL" Width="0.3*" />
+                                <ColumnDefinition x:Name="AddAccountR" Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <iconPacks:PackIconPhosphorIcons
+                                Grid.RowSpan="2"
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource WhiteColorBrush}"
+                                Kind="PlusCircleFill" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="0"
+                                FontWeight="Medium"
+                                Foreground="{StaticResource WhiteColorBrush}"
+                                Style="{StaticResource menuButtonText}"
+                                Text="Добавить аккаунт"
+                                TextTrimming="CharacterEllipsis" />
+
+                        </Grid>
+
+                        <Grid
+                            x:Name="AccountGrid"
+                            Grid.Row="2"
+                            Height="45"
+                            Margin="20,0,20,20"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Bottom"
+                            Visibility="{Binding UserService.User, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=loggedAcc}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition x:Name="AccountL" Width="0.3*" />
+                                <ColumnDefinition x:Name="AccountR" Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <iconPacks:PackIconPhosphorIcons
+                                Grid.RowSpan="2"
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource WhiteColorBrush}"
+                                Kind="UserCircleFill" />
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <TextBlock
+                                    Margin="0"
+                                    FontWeight="Medium"
+                                    Foreground="{StaticResource WhiteColorBrush}"
+                                    Style="{StaticResource menuButtonText}"
+                                    Text="{Binding UserService.User.UserName}"
+                                    TextTrimming="CharacterEllipsis" />
+
+                                <TextBlock
+                                    Margin="0"
+                                    FontSize="12"
+                                    Foreground="{StaticResource MainText}"
+                                    Style="{StaticResource menuButtonText}"
+                                    Text="{Binding UserService.User.TradeMark, StringFormat=({0})}"
+                                    TextTrimming="CharacterEllipsis" />
+                            </StackPanel>
+
+                        </Grid>
+                    </Grid>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="1">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.2,1.2">
+                            <GradientStop Offset="0.6" Color="{StaticResource DarkColor}" />
+                            <GradientStop Offset="1.5" Color="{StaticResource SecondColor}" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                    <ContentControl Content="{Binding Navigation.CurrentView}" />
+                </Border>
+
+                <Image
+                    x:Name="BGIcon"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Width="200"
+                    Height="auto"
+                    IsEnabled="False"
+                    IsHitTestVisible="False"
+                    Opacity="0.05"
+                    RenderOptions.BitmapScalingMode="HighQuality"
+                    Source="/Resources/logowobg_430x625.png"
+                    UseLayoutRounding="True"
+                    Visibility="{Binding Configuration.Configuration.DisableIconOnBG, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Invert, Mode=TwoWay}" />
+
+                <dialogHost:DialogHostView Grid.ColumnSpan="2" DataContext="{Binding DialogHost}" />
+            </Grid>
+        </Grid>
+
+    </Border>
+</Window>

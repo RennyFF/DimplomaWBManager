@@ -1,0 +1,203 @@
+﻿<UserControl
+    x:Class="MYWFE.MVVM.View.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:converter="clr-namespace:MYWFE.Utils.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:local="clr-namespace:MYWFE.MVVM.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="clr-namespace:MYWFE.MVVM.ViewModel"
+    d:DataContext="{d:DesignInstance Type=viewModel:SettingsViewModel}"
+    d:DesignHeight="590"
+    d:DesignWidth="820"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <converter:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Margin="20,0,20,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            HorizontalAlignment="Left"
+            Style="{StaticResource HeaderPageTextStyle}"
+            Text="Настройки" />
+        <Border
+            Grid.Row="1"
+            Margin="0,20,0,0"
+            Padding="0,20"
+            Background="{StaticResource MainColorBrush}"
+            CornerRadius="16">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto " />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel Margin="20,0">
+                    <TextBlock Style="{StaticResource SubHeaderPageTextStyle}" Text="Аккаунт" />
+                    <Border
+                        Margin="0,20,0,0"
+                        Padding="15,12"
+                        Background="{StaticResource SecondColorBrush}"
+                        CornerRadius="8">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="0.2*" />
+                                <ColumnDefinition Width="0.1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontWeight="Medium"
+                                Style="{StaticResource DefaultText}">
+                                <Run Text="{Binding UserService.User.UserName, FallbackValue=Аккаунт не установлен}" />
+                                <Run Text="{Binding UserService.User.TradeMark, StringFormat={}({0})}" />
+                            </TextBlock>
+
+                            <Button
+                                Grid.Column="1"
+                                Command="{Binding OpenModalCommand}"
+                                Style="{StaticResource CustomButton}"
+                                Visibility="{Binding UserService.User, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Invert}">
+                                <iconPacks:PackIconPhosphorIcons
+                                    Width="20"
+                                    Height="20"
+                                    Kind="WrenchFill" />
+                            </Button>
+
+                            <Button
+                                Grid.Column="2"
+                                Margin="10,0,0,0"
+                                Command="{Binding ExitUser}"
+                                Cursor="Hand"
+                                Style="{StaticResource CustomButton--red}"
+                                Visibility="{Binding UserService.User, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Invert}">
+                                <iconPacks:PackIconPhosphorIcons
+                                    Width="20"
+                                    Height="20"
+                                    Kind="SignOutFill" />
+                            </Button>
+
+                            <Button
+                                Grid.Column="2"
+                                Margin="10,0,0,0"
+                                Command="{Binding OpenModalCommand}"
+                                Cursor="Hand"
+                                Style="{StaticResource CustomButton--green}"
+                                Visibility="{Binding UserService.User, Converter={StaticResource NullToVisibilityConverter}}">
+                                <iconPacks:PackIconPhosphorIcons
+                                    Width="20"
+                                    Height="20"
+                                    Kind="SignInFill" />
+                            </Button>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+                <Border
+                    Grid.Row="1"
+                    Height="3"
+                    Margin="0,20,0,20"
+                    VerticalAlignment="Top">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Offset="0.0" Color="Transparent" />
+                            <GradientStop Offset="0.2" Color="{StaticResource SecondColor}" />
+                            <GradientStop Offset="0.8" Color="{StaticResource SecondColor}" />
+                            <GradientStop Offset="1" Color="Transparent" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+
+                <StackPanel Grid.Row="2" Margin="20,0">
+                    <TextBlock Style="{StaticResource SubHeaderPageTextStyle}" Text="Приложение" />
+                    <CheckBox
+                        Margin="0,20"
+                        Command="{Binding SaveConfig}"
+                        IsChecked="{Binding ConfigurationService.Configuration.StartUpOnWindows, Mode=TwoWay}"
+                        Style="{StaticResource SettingsCheckbox}">
+                        <StackPanel>
+                            <TextBlock
+                                Margin="0,0,0,5"
+                                Style="{StaticResource DefaultText}"
+                                Text="Добавить в автозапуск" />
+                            <TextBlock
+                                Foreground="Gray"
+                                Style="{StaticResource SmallText}"
+                                Text="Запускать MYWFE при загрузке Windows" />
+                        </StackPanel>
+                    </CheckBox>
+
+                    <CheckBox
+                        Command="{Binding SaveConfig}"
+                        IsChecked="{Binding ConfigurationService.Configuration.DisableIconOnBG}"
+                        Style="{StaticResource SettingsCheckbox}">
+                        <StackPanel>
+                            <TextBlock
+                                Margin="0,0,0,5"
+                                Style="{StaticResource DefaultText}"
+                                Text="Отключить иконку" />
+                            <TextBlock
+                                Foreground="Gray"
+                                Style="{StaticResource SmallText}"
+                                Text="Выключить иконку на заднем фоне" />
+                        </StackPanel>
+                    </CheckBox>
+
+                    <CheckBox
+                        Margin="0,20"
+                        Command="{Binding SaveConfig}"
+                        Cursor="Hand"
+                        IsChecked="{Binding ConfigurationService.Configuration.DisableNotifications}"
+                        Style="{StaticResource SettingsCheckbox}">
+                        <StackPanel>
+                            <TextBlock
+                                Margin="0,0,0,5"
+                                Style="{StaticResource DefaultText}"
+                                Text="Отключить уведомления" />
+                            <TextBlock
+                                Foreground="Gray"
+                                Style="{StaticResource SmallText}"
+                                Text="После успешных действий не показывать уведомления" />
+                        </StackPanel>
+                    </CheckBox>
+
+                </StackPanel>
+
+                <Grid
+                    Grid.Row="2"
+                    Margin="20,0"
+                    VerticalAlignment="Bottom">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock
+                            Margin="0,0,0,5"
+                            Style="{StaticResource DefaultText}"
+                            Text="Версия приложения" />
+                        <TextBlock
+                            Foreground="Gray"
+                            Style="{StaticResource SmallText}"
+                            Text="{Binding Version}" />
+                    </StackPanel>
+
+                    <Button
+                        Grid.Column="1"
+                        Command="{Binding ResetConfig}"
+                        Content="Сбросить настройки"
+                        FontSize="16"
+                        Style="{StaticResource CustomButton}" />
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

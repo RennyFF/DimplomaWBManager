@@ -1,0 +1,75 @@
+﻿<Application
+    x:Class="MYWFE.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customFeedbackAnswerModal="clr-namespace:MYWFE.Utils.Components.Dialog.CustomFeedbackAnswerModal"
+    xmlns:customImageContainerModal="clr-namespace:MYWFE.Utils.Components.Dialog.CustomImageContainerModal"
+    xmlns:customMessageBox="clr-namespace:MYWFE.Utils.Components.Dialog.CustomMessageBox"
+    xmlns:customModal="clr-namespace:MYWFE.Utils.Components.Dialog.CustomModal"
+    xmlns:dialogHost="clr-namespace:MYWFE.Utils.Components.Dialog"
+    xmlns:splashScreen="clr-namespace:MYWFE.Utils.Components.SplashScreen"
+    xmlns:tz="http://schemas.abtsoftware.co.uk/transitionz"
+    xmlns:view="clr-namespace:MYWFE.MVVM.View"
+    xmlns:viewModel="clr-namespace:MYWFE.MVVM.ViewModel">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/ResourceColors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/ResourceBase.xaml" />
+                <ResourceDictionary Source="Resources/Styles/ResourceStyleElements.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--  Binding core pages  -->
+
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView tz:Transitionz.Opacity="{tz:OpacityParams Duration=400, From=0, To=1.0, TransitionOn=Visibility}" tz:Transitionz.Translate="{tz:TranslateParams From='10,0', To='0,0', Duration=200, TransitionOn=Visibility}" />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ReviewViewModel}">
+                <view:ReviewView tz:Transitionz.Opacity="{tz:OpacityParams Duration=400, From=0, To=1.0, TransitionOn=Visibility}" tz:Transitionz.Translate="{tz:TranslateParams From='10,0', To='0,0', Duration=200, TransitionOn=Visibility}" />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:QuestionViewModel}">
+                <view:QuestionView tz:Transitionz.Opacity="{tz:OpacityParams Duration=400, From=0, To=1.0, TransitionOn=Visibility}" tz:Transitionz.Translate="{tz:TranslateParams From='10,0', To='0,0', Duration=200, TransitionOn=Visibility}" />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:TemplatesViewModel}">
+                <view:TemplatesView tz:Transitionz.Opacity="{tz:OpacityParams Duration=400, From=0, To=1.0, TransitionOn=Visibility}" tz:Transitionz.Translate="{tz:TranslateParams From='10,0', To='0,0', Duration=200, TransitionOn=Visibility}" />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+                <view:SettingsView tz:Transitionz.Opacity="{tz:OpacityParams Duration=400, From=0, To=1.0, TransitionOn=Visibility}" tz:Transitionz.Translate="{tz:TranslateParams From='10,0', To='0,0', Duration=200, TransitionOn=Visibility}" />
+            </DataTemplate>
+
+            <!--  Binding modals components  -->
+
+            <DataTemplate DataType="{x:Type customModal:CustomModalViewModel}">
+                <customModal:CustomModalView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type dialogHost:DialogHostViewModel}">
+                <dialogHost:DialogHostView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type customMessageBox:CustomMessageBoxViewModel}">
+                <customMessageBox:CustomMessageBoxView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type customFeedbackAnswerModal:CustomFeedbackAnswerModalViewModel}">
+                <customFeedbackAnswerModal:CustomFeedbackAnswerModalView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type customImageContainerModal:CustomImageContainerModalViewModel}">
+                <customImageContainerModal:CustomImageContainerModalView />
+            </DataTemplate>
+
+            <!--  Binding other items  -->
+
+            <DataTemplate DataType="{x:Type splashScreen:SplashScreenViewModel}">
+                <splashScreen:SplashScreenView />
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

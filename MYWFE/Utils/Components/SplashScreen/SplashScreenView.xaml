@@ -1,0 +1,36 @@
+﻿<Window
+    x:Class="MYWFE.Utils.Components.SplashScreen.SplashScreenView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="clr-namespace:MYWFE.Utils.Components"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MYWFE.Utils.Components.SplashScreen"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Test"
+    Width="500"
+    Height="400"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Border Background="{StaticResource DarkColorBrush}" CornerRadius="12">
+        <Grid>
+            <Grid.Background>
+                <ImageBrush
+                    ImageSource="/Resources/logowobg_430x625.png"
+                    Opacity="0.15"
+                    RenderOptions.BitmapScalingMode="HighQuality"
+                    Stretch="Uniform" />
+            </Grid.Background>
+            <components:LoadingSpinner
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                Cap="Triangle"
+                Diameter="100"
+                Thickness="7"
+                Color="{StaticResource SecondColorBrush}" />
+        </Grid>
+    </Border>
+</Window>

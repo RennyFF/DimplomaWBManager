@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_LastSelectedProfileId>D:\c# apps\WBNEWANSWEARS\MYWFE\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="MVVM\View\ReviewView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\TemplatesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\HomeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\SettingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Utils\Components\Dialog\CustomFeedbackAnswerModal\CustomFeedbackAnswerModalView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Utils\Components\Dialog\CustomImageContainerModal\CustomImageContainerModalView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Utils\Components\Dialog\CustomMessageBox\CustomMessageBoxView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Utils\Components\Dialog\CustomModal\CustomModalView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Utils\Components\Dialog\DialogHostView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Utils\Components\HomeButtonSmall.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Utils\Components\SplashScreen\SplashScreenView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MVVM\View\QuestionView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\ReviewView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\TemplatesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\HomeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\SettingsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Styles\ResourceBase.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Styles\ResourceColors.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Styles\ResourceStyleElements.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Utils\Components\Dialog\CustomFeedbackAnswerModal\CustomFeedbackAnswerModalView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Utils\Components\Dialog\CustomImageContainerModal\CustomImageContainerModalView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Utils\Components\Dialog\CustomMessageBox\CustomMessageBoxView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Utils\Components\Dialog\CustomModal\CustomModalView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Utils\Components\Dialog\DialogHostView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Utils\Components\HomeButtonSmall.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Utils\Components\LoadingSpinner.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Utils\Components\HomeButtonBig.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Utils\Components\SplashScreen\SplashScreenView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

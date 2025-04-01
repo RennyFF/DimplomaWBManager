@@ -1,0 +1,107 @@
+﻿<UserControl
+    x:Class="MYWFE.Utils.Components.Dialog.CustomImageContainerModal.CustomImageContainerModalView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:converters="clr-namespace:MYWFE.Utils.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:local="clr-namespace:MYWFE.Utils.Components.Dialog.CustomImageContainerModal"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="600"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:IndexOfListboxToTextConverter x:Key="IndexOfListboxToTextConverter" />
+    </UserControl.Resources>
+    <Border
+        Width="auto"
+        Height="300"
+        MaxWidth="700"
+        Padding="20,25"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Background="{StaticResource DarkColorBrush}"
+        CornerRadius="16"
+        Focusable="False">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                HorizontalAlignment="Center"
+                Style="{StaticResource HeaderPageTextStyle}"
+                Text="Прикрепленные изображения" />
+
+            <ListBox
+                Grid.Row="1"
+                d:ItemsSource="{d:SampleData ItemCount=5}"
+                ItemContainerStyle="{StaticResource ListBoxItemCustomStyleTransparent}"
+                ItemsSource="{Binding ImageList}"
+                SelectionMode="Single">
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Margin="5,5"
+                            Padding="15,15"
+                            Background="{StaticResource SecondColorBrush}"
+                            CornerRadius="8">
+                            <b:Interaction.Triggers>
+                                <b:EventTrigger EventName="PreviewMouseDown">
+                                    <b:InvokeCommandAction Command="{Binding DataContext.OpenImageCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}" />
+                                </b:EventTrigger>
+                            </b:Interaction.Triggers>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <iconPacks:PackIconPhosphorIcons
+                                    Margin="0,0,10,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="{StaticResource WhiteColorBrush}"
+                                    Kind="ImageFill" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    Style="{StaticResource DefaultText}"
+                                    Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}, Converter={StaticResource IndexOfListboxToTextConverter}}"
+                                    TextTrimming="WordEllipsis" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+
+                <ListBox.Template>
+                    <ControlTemplate TargetType="ListBox">
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </ListBox.Template>
+            </ListBox>
+
+            <Button
+                Grid.Row="2"
+                HorizontalAlignment="Right"
+                Command="{Binding CloseCommand}"
+                Content="Закрыть"
+                FontSize="14"
+                FontWeight="Bold"
+                Style="{StaticResource CustomButton}" />
+        </Grid>
+    </Border>
+</UserControl>

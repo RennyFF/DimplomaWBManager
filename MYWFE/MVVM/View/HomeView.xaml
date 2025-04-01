@@ -1,0 +1,243 @@
+﻿<UserControl
+    x:Class="MYWFE.MVVM.View.HomeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:components="clr-namespace:MYWFE.Utils.Components"
+    xmlns:converters="clr-namespace:MYWFE.Utils.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:local="clr-namespace:MYWFE.MVVM.View"
+    xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="clr-namespace:MYWFE.MVVM.ViewModel"
+    d:DataContext="{d:DesignInstance Type=viewModel:HomeViewModel}"
+    d:DesignHeight="590"
+    d:DesignWidth="1220"
+    Background="Transparent"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <StackPanel
+            Grid.RowSpan="2"
+            VerticalAlignment="Center"
+            Visibility="{Binding UserService.User, Converter={StaticResource NullToVisibilityConverter}}">
+            <TextBlock
+                HorizontalAlignment="Center"
+                Style="{StaticResource HeaderPageTextStyle}"
+                Text="Ограниченный доступ" />
+            <TextBlock
+                Margin="0,5,0,20"
+                HorizontalAlignment="Center"
+                Foreground="{StaticResource LightGrayColorBrush}"
+                Style="{StaticResource SubHeaderPageTextStyle}"
+                Text="Войдите в аккаунт, чтобы получить доступ к этой вкладке" />
+            <Button
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Cursor="Hand"
+                Style="{StaticResource CustomButton--anotherBG}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="PreviewMouseDown">
+                        <b:InvokeCommandAction Command="{Binding OpenModalCommand}" />
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconPhosphorIcons
+                        Width="20"
+                        Height="20"
+                        Kind="UserCirclePlusBold" />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource DefaultText}"
+                        Text="Войти в аккаунт" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <Grid Margin="20,0,20,20" Visibility="{Binding UserService.User, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Invert}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock
+                HorizontalAlignment="Left"
+                Style="{StaticResource HeaderPageTextStyle}"
+                Text="Главная" />
+
+            <components:LoadingSpinner
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Cap="Triangle"
+                Diameter="100"
+                Thickness="7"
+                Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}"
+                Color="{StaticResource SecondColorBrush}" />
+
+            <Grid Grid.Row="1" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Invert}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2.5*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Border
+                    Margin="0,20,0,0"
+                    Padding="20,15"
+                    Background="{StaticResource MainColorBrush}"
+                    CornerRadius="16">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            HorizontalAlignment="Left"
+                            Style="{StaticResource SubHeaderPageTextStyle}"
+                            Text="Статистика" />
+
+                        <Border
+                            Grid.Row="1"
+                            Margin="0,20"
+                            Background="{StaticResource SecondColorBrush}"
+                            ClipToBounds="True"
+                            CornerRadius="16"
+                            Visibility="{Binding IsFailedToAchiveData, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Invert}">
+                            <lvc:CartesianChart
+                                Series="{Binding Series}"
+                                XAxes="{Binding XAxes}"
+                                YAxes="{Binding YAxes}" />
+                        </Border>
+
+                        <Border
+                            Grid.Row="1"
+                            Margin="0,20"
+                            Background="{StaticResource SecondColorBrush}"
+                            ClipToBounds="True"
+                            CornerRadius="16"
+                            Visibility="{Binding IsFailedToAchiveData, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    Style="{StaticResource DefaultText}"
+                                    Text="Ошибка в получении данных" />
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    Foreground="{StaticResource LightGrayColorBrush}"
+                                    Style="{StaticResource DefaultText}"
+                                    Text="попробуйте ещё раз через минуту" />
+                            </StackPanel>
+                        </Border>
+
+                        <Grid Grid.Row="2" HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <components:HomeButtonSmall
+                                Icon="SparkleFill"
+                                TextInside="{Binding ReviewsCountity}"
+                                UseAnimation="False" />
+                            <components:HomeButtonSmall
+                                Grid.Column="1"
+                                Margin="20,0"
+                                Icon="QuestionFill"
+                                TextInside="{Binding QuestionsCountity}"
+                                UseAnimation="False" />
+                            <components:HomeButtonSmall
+                                Grid.Column="2"
+                                Icon="CalendarStarFill"
+                                TextInside="{Binding ReviewsCountityToday}"
+                                UseAnimation="False" />
+                            <components:HomeButtonSmall
+                                Grid.Column="3"
+                                Margin="20,0"
+                                Icon="CalendarDotsFill"
+                                TextInside="{Binding QuestionsCountityToday}"
+                                UseAnimation="False" />
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <Border
+                    Grid.Row="1"
+                    Margin="0,20,0,0"
+                    Padding="20,15"
+                    HorizontalAlignment="Left"
+                    Background="{StaticResource MainColorBrush}"
+                    CornerRadius="16"
+                    Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Invert}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            HorizontalAlignment="Left"
+                            Style="{StaticResource SubHeaderPageTextStyle}"
+                            Text="Быстрый доступ" />
+
+                        <StackPanel
+                            Grid.Row="1"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                            <components:HomeButtonBig
+                                Height="Auto"
+                                Cursor="Hand"
+                                Icon="PlayCircleFill"
+                                TextInside="Запустить ответы на отзывы"
+                                UseAnimation="True">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="PreviewMouseDown">
+                                        <b:InvokeCommandAction Command="{Binding StartAnswers}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </components:HomeButtonBig>
+                            <components:HomeButtonBig
+                                Margin="20,0,0,0"
+                                Cursor="Hand"
+                                Icon="ClockCountdownFill"
+                                TextInside="Включить ответы каждый час"
+                                UseAnimation="True"
+                                Visibility="{Binding ConfigurationService.Configuration.AutoAnswerOnReviews, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Invert}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="PreviewMouseDown">
+                                        <b:InvokeCommandAction Command="{Binding SetAutoAnswers}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </components:HomeButtonBig>
+                            <components:HomeButtonBig
+                                Width="295"
+                                Margin="20,0,0,0"
+                                Cursor="Hand"
+                                Icon="ClockCountdownFill"
+                                TextInside="Выключить авто ответ"
+                                UseAnimation="True"
+                                Visibility="{Binding ConfigurationService.Configuration.AutoAnswerOnReviews, Converter={StaticResource BoolToVisibilityConverter}}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="PreviewMouseDown">
+                                        <b:InvokeCommandAction Command="{Binding DisableAutoAnswers}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </components:HomeButtonBig>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</UserControl>
