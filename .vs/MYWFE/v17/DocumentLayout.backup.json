@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|d:\\c# apps\\wbnewanswears\\dimplomwbmanager\\dimplomawbmanager\\mywfe\\mvvm\\viewmodel\\questionviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|solutionrelative:mywfe\\mvvm\\viewmodel\\questionviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|d:\\c# apps\\wbnewanswears\\dimplomwbmanager\\dimplomawbmanager\\mywfe\\mvvm\\viewmodel\\settingsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|solutionrelative:mywfe\\mvvm\\viewmodel\\settingsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|d:\\c# apps\\wbnewanswears\\dimplomwbmanager\\dimplomawbmanager\\mywfe\\mvvm\\viewmodel\\reviewviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|solutionrelative:mywfe\\mvvm\\viewmodel\\reviewviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|d:\\c# apps\\wbnewanswears\\dimplomwbmanager\\dimplomawbmanager\\mywfe\\mvvm\\viewmodel\\questionviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|solutionrelative:mywfe\\mvvm\\viewmodel\\questionviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|d:\\c# apps\\wbnewanswears\\dimplomwbmanager\\dimplomawbmanager\\mywfe\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|d:\\c# apps\\wbnewanswears\\dimplomwbmanager\\dimplomawbmanager\\mywfe\\mvvm\\viewmodel\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|solutionrelative:mywfe\\mvvm\\viewmodel\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|d:\\c# apps\\wbnewanswears\\dimplomwbmanager\\dimplomawbmanager\\mywfe\\mvvm\\viewmodel\\settingsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|solutionrelative:mywfe\\mvvm\\viewmodel\\settingsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|d:\\c# apps\\wbnewanswears\\dimplomwbmanager\\dimplomawbmanager\\mywfe\\mvvm\\view\\reviewview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -58,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -81,8 +81,7 @@
               "ToolTip": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\View\\ReviewView.xaml",
               "RelativeToolTip": "MYWFE\\MVVM\\View\\ReviewView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-04T19:21:35.637Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-04T19:21:35.637Z"
             },
             {
               "$type": "Document",
@@ -93,8 +92,7 @@
               "ToolTip": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\View\\TemplatesView.xaml",
               "RelativeToolTip": "MYWFE\\MVVM\\View\\TemplatesView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-04T19:18:33.075Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-04T19:18:33.075Z"
             },
             {
               "$type": "Document",
@@ -105,18 +103,17 @@
               "ToolTip": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\View\\SettingsView.xaml",
               "RelativeToolTip": "MYWFE\\MVVM\\View\\SettingsView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-04T19:18:31.291Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-04T19:18:31.291Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "SettingsViewModel.cs",
               "DocumentMoniker": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\ViewModel\\SettingsViewModel.cs",
               "RelativeDocumentMoniker": "MYWFE\\MVVM\\ViewModel\\SettingsViewModel.cs",
               "ToolTip": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\ViewModel\\SettingsViewModel.cs",
               "RelativeToolTip": "MYWFE\\MVVM\\ViewModel\\SettingsViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAACgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-01T20:18:16.389Z",
               "EditorCaption": ""
@@ -141,20 +138,20 @@
               "RelativeDocumentMoniker": "MYWFE\\MVVM\\ViewModel\\ReviewViewModel.cs",
               "ToolTip": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\ViewModel\\ReviewViewModel.cs",
               "RelativeToolTip": "MYWFE\\MVVM\\ViewModel\\ReviewViewModel.cs",
-              "ViewState": "AgIAANkAAAAAAAAAAAAAAPkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAAAJAAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-01T20:17:53.888Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "QuestionViewModel.cs",
               "DocumentMoniker": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\ViewModel\\QuestionViewModel.cs",
               "RelativeDocumentMoniker": "MYWFE\\MVVM\\ViewModel\\QuestionViewModel.cs",
               "ToolTip": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\ViewModel\\QuestionViewModel.cs",
               "RelativeToolTip": "MYWFE\\MVVM\\ViewModel\\QuestionViewModel.cs",
-              "ViewState": "AgIAALQAAAAAAAAAAAAAAOUAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALkAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-01T20:17:27.145Z",
               "EditorCaption": ""
@@ -173,7 +170,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "HomeViewModel.cs",
               "DocumentMoniker": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\ViewModel\\HomeViewModel.cs",
               "RelativeDocumentMoniker": "MYWFE\\MVVM\\ViewModel\\HomeViewModel.cs",
@@ -181,8 +178,7 @@
               "RelativeToolTip": "MYWFE\\MVVM\\ViewModel\\HomeViewModel.cs",
               "ViewState": "AgIAADABAAAAAAAAAAAAAEcBAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T20:16:59.635Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T20:16:59.635Z"
             },
             {
               "$type": "Document",
@@ -198,7 +194,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\App.xaml.cs",
               "RelativeDocumentMoniker": "MYWFE\\App.xaml.cs",
@@ -206,8 +202,7 @@
               "RelativeToolTip": "MYWFE\\App.xaml.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAAADUAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T20:16:43.528Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T20:16:43.528Z"
             },
             {
               "$type": "Document",
@@ -218,8 +213,7 @@
               "ToolTip": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\App.xaml",
               "RelativeToolTip": "MYWFE\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-01T20:16:40.201Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T20:16:40.201Z"
             }
           ]
         }
