@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|d:\\c# apps\\wbnewanswears\\dimplomwbmanager\\dimplomawbmanager\\mywfe\\mvvm\\viewmodel\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|solutionrelative:mywfe\\mvvm\\viewmodel\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|d:\\c# apps\\wbnewanswears\\dimplomwbmanager\\dimplomawbmanager\\mywfe\\mvvm\\viewmodel\\reviewviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|solutionrelative:mywfe\\mvvm\\viewmodel\\reviewviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,6 +13,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|d:\\c# apps\\wbnewanswears\\dimplomwbmanager\\dimplomawbmanager\\mywfe\\mvvm\\viewmodel\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|solutionrelative:mywfe\\mvvm\\viewmodel\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|d:\\c# apps\\wbnewanswears\\dimplomwbmanager\\dimplomawbmanager\\mywfe\\mvvm\\viewmodel\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|solutionrelative:mywfe\\mvvm\\viewmodel\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BC4140AA-B081-41EC-A505-6CDF77A88E5F}|MYWFE\\MYWFE.csproj|d:\\c# apps\\wbnewanswears\\dimplomwbmanager\\dimplomawbmanager\\mywfe\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -58,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -131,55 +131,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ReviewViewModel.cs",
               "DocumentMoniker": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\ViewModel\\ReviewViewModel.cs",
               "RelativeDocumentMoniker": "MYWFE\\MVVM\\ViewModel\\ReviewViewModel.cs",
               "ToolTip": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\ViewModel\\ReviewViewModel.cs",
               "RelativeToolTip": "MYWFE\\MVVM\\ViewModel\\ReviewViewModel.cs",
-              "ViewState": "AgIAAIAAAAAAAAAAAAAAAIwAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOAAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-01T20:17:53.888Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "QuestionViewModel.cs",
               "DocumentMoniker": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\ViewModel\\QuestionViewModel.cs",
               "RelativeDocumentMoniker": "MYWFE\\MVVM\\ViewModel\\QuestionViewModel.cs",
               "ToolTip": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\ViewModel\\QuestionViewModel.cs",
               "RelativeToolTip": "MYWFE\\MVVM\\ViewModel\\QuestionViewModel.cs",
-              "ViewState": "AgIAAN4AAAAAAAAAAAAAAF4AAABjAAAAAAAAAA==",
+              "ViewState": "AgIAACsAAAAAAAAAAAAAAF4AAABjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T20:17:27.145Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T20:17:27.145Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "MainViewModel.cs",
               "DocumentMoniker": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\ViewModel\\MainViewModel.cs",
               "RelativeDocumentMoniker": "MYWFE\\MVVM\\ViewModel\\MainViewModel.cs",
               "ToolTip": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\ViewModel\\MainViewModel.cs",
               "RelativeToolTip": "MYWFE\\MVVM\\ViewModel\\MainViewModel.cs",
-              "ViewState": "AgIAAGEAAAAAAAAAAAAAAHQAAABLAAAAAAAAAA==",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAAHQAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T20:17:10.664Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T20:17:10.664Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "HomeViewModel.cs",
               "DocumentMoniker": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\ViewModel\\HomeViewModel.cs",
               "RelativeDocumentMoniker": "MYWFE\\MVVM\\ViewModel\\HomeViewModel.cs",
               "ToolTip": "D:\\c# apps\\WBNEWANSWEARS\\DimplomWBManager\\DimplomaWBManager\\MYWFE\\MVVM\\ViewModel\\HomeViewModel.cs",
               "RelativeToolTip": "MYWFE\\MVVM\\ViewModel\\HomeViewModel.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAI0AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAEEBAAAAAAAAAAAAAI0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T20:16:59.635Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T20:16:59.635Z"
             },
             {
               "$type": "Document",
@@ -203,8 +200,7 @@
               "RelativeToolTip": "MYWFE\\App.xaml.cs",
               "ViewState": "AgIAADgAAAAAAAAAAAAAAE4AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T20:16:43.528Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T20:16:43.528Z"
             },
             {
               "$type": "Document",

@@ -31,6 +31,7 @@ namespace MYWFE.MVVM.ViewModel
         private CustomMessageBoxViewModel CustomMessageBoxViewModel { get; }
         #endregion
         #region Values
+        private HomeViewModel HomeViewModel { get; set; }
         private string _version;
         public string Version
         {
@@ -62,6 +63,7 @@ namespace MYWFE.MVVM.ViewModel
                         {
                             await Task.Run(() => UserService.AddUser(dialogOutput.DialogResult));
                         }
+                        HomeViewModel.InitHomeView();
                     }
                 }, obj => true);
             }
@@ -112,7 +114,7 @@ namespace MYWFE.MVVM.ViewModel
             }
         }
         #endregion
-        public SettingsViewModel(IConfigurationService configurationService, IUserService userService, CustomModalViewModel customModal, DialogHostViewModel dialogHost, CustomMessageBoxViewModel customMessageBoxViewModel)
+        public SettingsViewModel(HomeViewModel homeViewViewModel, IConfigurationService configurationService, IUserService userService, CustomModalViewModel customModal, DialogHostViewModel dialogHost, CustomMessageBoxViewModel customMessageBoxViewModel)
         {
             ConfigurationService = configurationService;
             UserService = userService;
@@ -120,6 +122,8 @@ namespace MYWFE.MVVM.ViewModel
             DialogHost = dialogHost;
             CustomModalViewModel = customModal;
             CustomMessageBoxViewModel = customMessageBoxViewModel;
+
+            HomeViewModel = homeViewViewModel;
 
             Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
