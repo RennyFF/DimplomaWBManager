@@ -92,8 +92,8 @@ namespace MYWFE.MVVM.ViewModel
                     {
                         return;
                     }
-                    var IsSuccess = await FeedbackRequestsAPI.AnswerQuestion(UserService.User.FeedbackToken, question.id, question.AnswerText, false);
-                    //var IsSuccess = true;
+                    //var IsSuccess = await FeedbackRequestsAPI.AnswerQuestion(UserService.User.FeedbackToken, question.id, question.AnswerText, false);
+                    var IsSuccess = true;
                     if (IsSuccess) { 
                         if (!ConfigurationService.Configuration.DisableNotifications)
                         {
@@ -120,8 +120,8 @@ namespace MYWFE.MVVM.ViewModel
                     {
                         return;
                     }
-                    var IsSuccess = await FeedbackRequestsAPI.AnswerQuestion(UserService.User.FeedbackToken, question.id, question.AnswerText, true);
-                    //var IsSuccess = true;
+                    //var IsSuccess = await FeedbackRequestsAPI.AnswerQuestion(UserService.User.FeedbackToken, question.id, question.AnswerText, true);
+                    var IsSuccess = true;
                     if (IsSuccess)
                     {
                         if (!ConfigurationService.Configuration.DisableNotifications)

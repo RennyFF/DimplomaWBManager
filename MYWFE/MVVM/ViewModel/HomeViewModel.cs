@@ -149,9 +149,9 @@ namespace MYWFE.MVVM.ViewModel
                     var dialogOutput = await DialogHost.ShowAsync(CustomMessageBoxViewModel, new CustomMessageBoxInput("Запустить автоматическую отправку ответов по шаблонам?"));
                     if (dialogOutput.DialogActionResult == DialogActionResult.Confirm)
                     {
-                            var IsSuccess = await FeedbackRequestsAPI.AutoReviewAnswers(UserService.User.FeedbackToken);
-                            //var IsSuccess = true;
-                        if (IsSuccess)
+                            //var IsSuccess = await FeedbackRequestsAPI.AutoReviewAnswers(UserService.User.FeedbackToken);
+                            var IsSuccess = true;
+                            if (IsSuccess)
                         {
                             if (!ConfigurationService.Configuration.DisableNotifications)
                             {

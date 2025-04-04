@@ -116,8 +116,8 @@ namespace MYWFE.MVVM.ViewModel
                     var dialogOutput = await DialogHost.ShowAsync(CustomFeedbackAnswerModalViewModel, new CustomFeedbackAnswerModalViewModelInput());
                     if(dialogOutput.DialogActionResult == DialogActionResult.Confirm)
                     {
-                        var IsSuccess = await FeedbackRequestsAPI.AnswerReview(UserService.User.FeedbackToken, review.id, dialogOutput.ManualAnswerText);
-                        //var IsSuccess = true;
+                        //var IsSuccess = await FeedbackRequestsAPI.AnswerReview(UserService.User.FeedbackToken, review.id, dialogOutput.ManualAnswerText);
+                        var IsSuccess = true;
                         if (IsSuccess) { 
                             if (!ConfigurationService.Configuration.DisableNotifications) {
                                 await DialogHost.ShowAsync(CustomMessageBoxViewModel, new CustomMessageBoxInput("Ответ успешно отправлен!"));
@@ -142,8 +142,8 @@ namespace MYWFE.MVVM.ViewModel
                     var dialogOutput = await DialogHost.ShowAsync(CustomMessageBoxViewModel, new CustomMessageBoxInput("Запустить автоматическую отправку ответов по шаблонам?"));
                     if (dialogOutput.DialogActionResult == DialogActionResult.Confirm)
                     {
-                        var IsSuccess = await FeedbackRequestsAPI.AutoReviewAnswers(UserService.User.FeedbackToken);
-                        //var IsSuccess = true;
+                        //var IsSuccess = await FeedbackRequestsAPI.AutoReviewAnswers(UserService.User.FeedbackToken);
+                        var IsSuccess = true;
                         if (IsSuccess)
                         {
                             if (!ConfigurationService.Configuration.DisableNotifications)

@@ -132,7 +132,7 @@ namespace MYWFE.ViewModel
             {
                 if (Configuration.Configuration.AutoAnswerOnReviews)
                 {
-                    await FeedbackRequestsAPI.AutoReviewAnswers(UserService.User.FeedbackToken);
+                    //await FeedbackRequestsAPI.AutoReviewAnswers(UserService.User.FeedbackToken);
                     await Task.Delay(3600000);
                 }
                 else
