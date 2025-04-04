@@ -39,6 +39,8 @@ namespace MYWFE.MVVM.ViewModel
         #region Values
         private readonly int CountityOnPage = 20;
 
+        private HomeViewModel HomeViewModel { get; set; }
+
         private bool _isLoading;
         public bool IsLoading
         {
@@ -222,6 +224,7 @@ namespace MYWFE.MVVM.ViewModel
                     {
                         await Task.Run(() => UserService.AddUser(dialogOutput.DialogResult));
                         InitQuestion();
+                        HomeViewModel.InitHomeView();
                     }
                 }, obj => true);
             }
@@ -266,7 +269,7 @@ namespace MYWFE.MVVM.ViewModel
             await Task.Run(() => IsLoading = false);
         }
         #endregion
-        public QuestionViewModel(IUserService userService, IConfigurationService configurationService, DialogHostViewModel dialogHost, CustomModalViewModel customModalViewModel, CustomMessageBoxViewModel customMessageBoxViewModel, FeedbackRequestsAPI feedbackRequestsAPI)
+        public QuestionViewModel(HomeViewModel homeViewModel, IUserService userService, IConfigurationService configurationService, DialogHostViewModel dialogHost, CustomModalViewModel customModalViewModel, CustomMessageBoxViewModel customMessageBoxViewModel, FeedbackRequestsAPI feedbackRequestsAPI)
         {
             DialogHost = dialogHost;
             CustomMessageBoxViewModel = customMessageBoxViewModel;
@@ -274,7 +277,7 @@ namespace MYWFE.MVVM.ViewModel
             CustomModalViewModel = customModalViewModel;
             UserService = userService;
             FeedbackRequestsAPI = feedbackRequestsAPI;
-
+            HomeViewModel = homeViewModel;
             if (UserService.User != null)
             {
                 InitQuestion();

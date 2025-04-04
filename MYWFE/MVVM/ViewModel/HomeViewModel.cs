@@ -338,7 +338,7 @@ namespace MYWFE.MVVM.ViewModel
                 ];
             });
         }
-        private async void InitHomeView()
+        public async void InitHomeView()
         {
             await Task.Run(() => IsLoading = true);
             var loadChart = LoadChart(_currentMonthDateDateTime);

@@ -54,6 +54,8 @@ namespace MYWFE.MVVM.ViewModel
         #region Values
         private readonly int CountityOnPage = 20;
 
+        private HomeViewModel HomeViewModel { get; set; }
+
         private bool _isLoading;
         public bool IsLoading
         {
@@ -245,6 +247,7 @@ namespace MYWFE.MVVM.ViewModel
                     {
                         await Task.Run(() => UserService.AddUser(dialogOutput.DialogResult));
                         InitReview();
+                        HomeViewModel.InitHomeView();
                     }
                 }, obj => true);
             }
@@ -298,7 +301,7 @@ namespace MYWFE.MVVM.ViewModel
             await Task.Run(() => IsLoading = false);
         }
         #endregion
-        public ReviewViewModel(IUserService userService, IAnswerService answerService, IConfigurationService configurationService, FeedbackRequestsAPI feedbackRequestsAPI, DialogHostViewModel dialogHost, CustomModalViewModel customModalViewModel, CustomMessageBoxViewModel customMessageBoxViewModel, CustomFeedbackAnswerModalViewModel customFeedbackAnswerModalViewModel, CustomImageContainerModalViewModel customImageContainerModalViewModel)
+        public ReviewViewModel(HomeViewModel homeViewModel, IUserService userService, IAnswerService answerService, IConfigurationService configurationService, FeedbackRequestsAPI feedbackRequestsAPI, DialogHostViewModel dialogHost, CustomModalViewModel customModalViewModel, CustomMessageBoxViewModel customMessageBoxViewModel, CustomFeedbackAnswerModalViewModel customFeedbackAnswerModalViewModel, CustomImageContainerModalViewModel customImageContainerModalViewModel)
         {
             UserService = userService;
             AnswerService = answerService;
@@ -309,6 +312,7 @@ namespace MYWFE.MVVM.ViewModel
             CustomImageContainerModalViewModel = customImageContainerModalViewModel;
             CustomMessageBoxViewModel = customMessageBoxViewModel;
             CustomModalViewModel = customModalViewModel;
+            HomeViewModel = homeViewModel;
 
             FeedbackRequestsAPI = feedbackRequestsAPI;
             if (UserService.User != null)
