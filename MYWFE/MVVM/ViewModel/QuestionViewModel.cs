@@ -235,16 +235,19 @@ namespace MYWFE.MVVM.ViewModel
         {
             QuestionList.Clear();
             var Result = await FeedbackRequestsAPI.GetUnansweredQuestionsList(UserService.User.FeedbackToken, CurrentPage, CountityOnPage);
-            await Task.Run(() =>
+            if (Result != null)
             {
-                QuestionList = new ObservableCollection<Question>(Result.data.questions.Select(i => new Question()
+                await Task.Run(() =>
                 {
-                    id = i.id,
-                    productDetails = i.productDetails,
-                    text = i.text,
-                }));
-                onPropertyChanged(nameof(QuestionList));
-            });
+                    QuestionList = new ObservableCollection<Question>(Result.data.questions.Select(i => new Question()
+                    {
+                        id = i.id,
+                        productDetails = i.productDetails,
+                        text = i.text,
+                    }));
+                    onPropertyChanged(nameof(QuestionList));
+                });
+            }
         }
 
         private async Task LoadPagesCountity()

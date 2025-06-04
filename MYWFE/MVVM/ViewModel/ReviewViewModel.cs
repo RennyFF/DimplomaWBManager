@@ -100,7 +100,7 @@ namespace MYWFE.MVVM.ViewModel
             {
                 return _openAttachedImages ??= new RelayCommand(async obj =>
                 {
-                    var dialogOutput = await DialogHost.ShowAsync(CustomImageContainerModalViewModel, new CustomImageContainerModalInput() { ImageList = (obj as ReviewElement).photoLinks});
+                    var dialogOutput = await DialogHost.ShowAsync(CustomImageContainerModalViewModel, new CustomImageContainerModalInput() { ImageList = (obj as ReviewElement).photoLinks });
                 }, obj => true);
             }
         }
@@ -114,12 +114,14 @@ namespace MYWFE.MVVM.ViewModel
                 {
                     ReviewElement review = obj as ReviewElement;
                     var dialogOutput = await DialogHost.ShowAsync(CustomFeedbackAnswerModalViewModel, new CustomFeedbackAnswerModalViewModelInput());
-                    if(dialogOutput.DialogActionResult == DialogActionResult.Confirm)
+                    if (dialogOutput.DialogActionResult == DialogActionResult.Confirm)
                     {
                         var IsSuccess = await FeedbackRequestsAPI.AnswerReview(UserService.User.FeedbackToken, review.id, dialogOutput.ManualAnswerText);
                         //var IsSuccess = true;
-                        if (IsSuccess) { 
-                            if (!ConfigurationService.Configuration.DisableNotifications) {
+                        if (IsSuccess)
+                        {
+                            if (!ConfigurationService.Configuration.DisableNotifications)
+                            {
                                 await DialogHost.ShowAsync(CustomMessageBoxViewModel, new CustomMessageBoxInput("Ответ успешно отправлен!"));
                             }
                             ReviewList.Remove(review);
@@ -155,7 +157,7 @@ namespace MYWFE.MVVM.ViewModel
                         else { await DialogHost.ShowAsync(CustomMessageBoxViewModel, new CustomMessageBoxInput("Произошла ошибка в отправке ответов!")); }
                     }
 
-                }, obj => AnswerService.Answers != null && AnswerService.Answers.Count>0 );
+                }, obj => AnswerService.Answers != null && AnswerService.Answers.Count > 0);
             }
         }
 
@@ -258,26 +260,29 @@ namespace MYWFE.MVVM.ViewModel
         {
             ReviewList.Clear();
             var Result = await FeedbackRequestsAPI.GetUnansweredReviewsList(UserService.User.FeedbackToken, CurrentPage, CountityOnPage);
-            await Task.Run(() =>
+            if (Result != null)
             {
-                ReviewList = new ObservableCollection<ReviewElement>(Result.data.feedbacks.Select(i => new ReviewElement()
+                await Task.Run(() =>
                 {
-                    id = i.id,
-                    productDetails = new ReviewElementProductDetails
+                    ReviewList = new ObservableCollection<ReviewElement>(Result.data.feedbacks.Select(i => new ReviewElement()
                     {
-                        nmId = i.productDetails.nmId,
-                        size = i.productDetails.size.Length == 0 ? "не указан" : i.productDetails.size,
-                        productName = i.productDetails.productName
-                    },
-                    cons = i.cons.Length == 0 ? "—" : i.cons,
-                    photoLinks = i.photoLinks,
-                    productValuation = i.productValuation,
-                    pros = i.pros.Length == 0 ? "—" : i.pros,
-                    userName = i.userName.Length == 0 ? "Пользователь" : i.userName,
-                    text = i.text.Length == 0 ? "—" : i.text,
-                }));
-                onPropertyChanged(nameof(ReviewList));
-            });
+                        id = i.id,
+                        productDetails = new ReviewElementProductDetails
+                        {
+                            nmId = i.productDetails.nmId,
+                            size = i.productDetails.size.Length == 0 ? "не указан" : i.productDetails.size,
+                            productName = i.productDetails.productName
+                        },
+                        cons = i.cons.Length == 0 ? "—" : i.cons,
+                        photoLinks = i.photoLinks,
+                        productValuation = i.productValuation,
+                        pros = i.pros.Length == 0 ? "—" : i.pros,
+                        userName = i.userName.Length == 0 ? "Пользователь" : i.userName,
+                        text = i.text.Length == 0 ? "—" : i.text,
+                    }));
+                    onPropertyChanged(nameof(ReviewList));
+                });
+            }
         }
 
         private async Task LoadPagesCountity()
